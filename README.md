@@ -19,8 +19,8 @@ Nuestra propuesta consiste en un sistema para la gestión de una biblioteca. El 
 		- Crear informe de prestamos
 
 ## CRUD USUARIOS (AXEL)
-    *(nombre, apellido, DNI, email, domicilio)*
+*(nombre, apellido, DNI, email, domicilio)*
 ## CRUD LIBROS (EMY)
-    *(título, edición, editorial, autor)(a elección de Emy consumir una API)*
+*(título, edición, editorial, autor)(a elección de Emy consumir una API)*
 ## PRÉSTAMOS (SANTI)
-    *(corroborar si el libre está disponible, si el usuario está registrado, cantidad de libros en su haber - no más de 3 libros -)*
+*(corroborar si el libre está disponible, si el usuario está registrado, cantidad de libros en su haber - no más de 3 libros -)*
