@@ -4,39 +4,34 @@
         "Apellido": "Perez",
         "DNI": "30123456",
         "Direccion": "Calle Falsa 123",
-        "Ciudad": "Parana",
-        "Libros": 0
+        "Ciudad": "Parana"
     },
     {
         "Nombre": "Sofia",
         "Apellido": "Fernandez",
         "DNI": "40222333",
         "Direccion": "Av. San Martin 456",
-        "Ciudad": "Villaguay",
-        "Libros": 0
+        "Ciudad": "Villaguay"
     },
     {
         "Nombre": "Marcelo",
         "Apellido": "Ramirez",
         "DNI": "27333444",
         "Direccion": "Pasaje Los Alamos 789",
-        "Ciudad": "Concordia",
-        "Libros": 0
+        "Ciudad": "Concordia"
     },
     {
         "Nombre": "Camila",
-        "Apellido": "Torres",
+        "Apellido": "Lopez",
         "DNI": "35999888",
         "Direccion": "Ruta 8 Km 15",
-        "Ciudad": "Victoria",
-        "Libros": 0
+        "Ciudad": "Victoria"
     },
     {
         "Nombre": "Andres",
         "Apellido": "Lopez",
         "DNI": "32111222",
         "Direccion": "Av. Rivadavia 1000",
-        "Ciudad": "La Paz",
-        "Libros": 0
+        "Ciudad": "La Paz"
     }
 ]

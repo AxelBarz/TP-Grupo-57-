@@ -1,13 +1,20 @@
 import json
 from tabulate import tabulate
+from colorama import *
+from mini_funciones import limpiar_pantalla, pedir_dato
+
+init(autoreset=True)
 
 def agregar_usuario():
-    nombre=input("Ingresa nombre de la persona: ")
-    apellido=input("Ingresa apellido de la persona: ")
-    DNI=input("Ingresa el DNI de la persona: ")
-    direccion=input("Ingresa la direccion de la persona: ")
-    ciudad=input("Ingresa la ciudad de la persona: ")
-    libros=int(input("Ingresa la cantidad de libros prestados y si no tiene libros escribir 0: "))
+    limpiar_pantalla()
+    print(Back.WHITE+Style.BRIGHT+"█████████████████ AGREGAR USUARIO ██████████████████████")
+    verde=Fore.LIGHTGREEN_EX
+
+    nombre=pedir_dato(verde+"Ingresa nombre de la persona: ")
+    apellido=pedir_dato(verde+"Ingresa apellido de la persona: ")
+    DNI=pedir_dato(verde+"Ingresa el DNI de la persona: ")
+    direccion=pedir_dato(verde+"Ingresa la direccion de la persona: ")
+    ciudad=pedir_dato(verde+"Ingresa la ciudad de la persona: ")
 
     nuevo_usuario={
         "Nombre": nombre,
@@ -15,7 +22,6 @@ def agregar_usuario():
         "DNI": DNI,
         "Direccion": direccion,
         "Ciudad": ciudad,
-        "Libros": libros
     }
 
     with open("Personas/Users.json", "r", encoding="utf-8") as usuarios: 
@@ -23,10 +29,13 @@ def agregar_usuario():
         lista_usuarios.append(nuevo_usuario)
     with open("Personas/Users.json", "w", encoding="utf-8") as usuarios: 
         json.dump(lista_usuarios, usuarios, indent=4)
-        print("USUARIO AGREGADO")
+        limpiar_pantalla()
+        print(Fore.GREEN+Style.BRIGHT+"USUARIO AGREGADO")
 
 def borrar_usuario():
-    DNI=input("Ingresa el DNI del usuario que quieres borrar: ")
+    limpiar_pantalla()
+    print(Back.WHITE+Style.BRIGHT+"█████████████████ BORRAR USUARIO ██████████████████████")
+    DNI=input(Fore.LIGHTRED_EX+"Ingresa el DNI del usuario que quieres borrar: ")
     with open("Personas/Users.json", "r", encoding="utf-8") as usuarios: 
         lista_usuarios=json.load(usuarios)
         while True:
@@ -39,13 +48,15 @@ def borrar_usuario():
             if encontrado:
                 break
             else:
-                print("VALOR INCORRECTO!!")
+                print(Back.RED+"VALOR INCORRECTO!!")
     with open("Personas/Users.json", "w", encoding="utf-8") as usuarios: 
         json.dump(lista_usuarios, usuarios, indent=4)
-        print("USUARIO ELIMINADO")
+        print(Back.LIGHTRED_EX+"USUARIO ELIMINADO")
 
 def listar_usuarios():
-    menu=" [1] LISTAR TODO \n [2] LISTAR NOMBRE/APELLIDOS \n [3] LISTAR DNIs \n [4] LISTAR DIRECCIONES \n [5] LISTAR CIUDAD \n [6] LISTAR LIBROS DE CADA USUARIO"
+    limpiar_pantalla()
+    print(Back.WHITE+Style.BRIGHT+"█████████████████ LISTAR USUARIO ██████████████████████")
+    menu=Fore.MAGENTA+Style.BRIGHT+" [1] LISTAR TODO \n [2] LISTAR NOMBRE/APELLIDOS \n [3] LISTAR DNIs \n [4] LISTAR DIRECCIONES \n [5] LISTAR CIUDAD"
     format_table="rounded_grid"
     with open("Personas/Users.json", "r", encoding="utf-8") as usuarios: 
         listar_usuario=json.load(usuarios)
@@ -60,7 +71,7 @@ def listar_usuarios():
                 tabla=tabulate(nombres, headers = ["Nombre", "Apellido"], tablefmt = format_table)
                 print(tabla)
             case 3:
-                print(" [1] NOMBRE/DNI \n [2] SOLO DNI ")
+                print(Fore.BLUE+" [1] NOMBRE/DNI \n [2] SOLO DNI ")
                 opcion2=int(input("Opcion seleccionada: "))
                 match opcion2:
                     case 1:
@@ -72,9 +83,9 @@ def listar_usuarios():
                         tabla=tabulate(dni, headers = ["DNI"], tablefmt = format_table, stralign="center")
                         print(tabla)
                     case _:
-                        print("VALOR INCORRECTO!!")
+                        print(Fore.RED+"VALOR INCORRECTO!!")
             case 4:
-                print(" [1] NOMBRE/DIRECCION \n [2] DIRECCION")
+                print(Fore.BLUE+" [1] NOMBRE/DIRECCION \n [2] DIRECCION")
                 opcion3=int(input("Opcion seleccionada: "))
                 match opcion3: 
                     case 1:
@@ -86,9 +97,9 @@ def listar_usuarios():
                         tabla=tabulate(direccion, headers=["Direccion"], tablefmt = format_table)
                         print(tabla)
                     case _:
-                        print("VALOR INCORRECTO ")
+                        print(Fore.RED+"VALOR INCORRECTO ")
             case 5:
-                print(" [1] NOMBRE/CIUDAD \n [2] CIUDAD")
+                print(Fore.BLUE+" [1] NOMBRE/CIUDAD \n [2] CIUDAD")
                 opcion4=int(input("Opcion seleccionada: "))
                 match opcion4:
                     case 1:
@@ -100,15 +111,13 @@ def listar_usuarios():
                         tabla=tabulate(ciudad, headers=["Ciudad"], tablefmt = format_table)
                         print(tabla)
                     case _:
-                        print("VALOR INCORRECTO ")
-            case 6:
-                libros=[[user["Nombre"], user["Apellido"], user["Libros"] ]for user in listar_usuario]
-                tabla=tabulate(libros, headers = ["Nombre", "Apellido", "Libros"], tablefmt = format_table)
-                print(tabla)
+                        print(Fore.RED+"VALOR INCORRECTO ")
             case _:
                 pass
 
 def modificar_usuario():
+    limpiar_pantalla()
+    print(Back.WHITE+Style.BRIGHT+"█████████████████ MODIFICAR USUARIO ██████████████████████")
     with open("Personas/Users.json", "r", encoding="utf-8") as usuarios: 
         lista_usuario=json.load(usuarios)
 
@@ -117,34 +126,31 @@ def modificar_usuario():
 
         for user in lista_usuario:
             if str(user["DNI"]) == buscar:
-                print("persona encontrada")
-                opcion=int(input("[1] NOMBRE \n [2] APELLIDO \n [3] DNI \n [4] DIRECCION \n [5] CIUDAD \n [6] CANTIDAD LIBROS \n Seleccione una modificacion:  "))
+                print(Back.GREEN+"persona encontrada")
+                opcion=int(input(Fore.YELLOW+" [1] NOMBRE \n [2] APELLIDO \n [3] DNI \n [4] DIRECCION \n [5] CIUDAD \n Seleccione una modificacion:  "))
                 match opcion:
                     case 1: 
-                        user["Nombre"]=input("Ingresa nuevo nombre: ")
-                        print("NOMBRE ACTUALIZADO")
+                        user["Nombre"]=input(f"Antiguo nombre: {user['Nombre']} ║║║║ Nuevo nombre: ")
+                        print(Fore.GREEN+Style.BRIGHT+"NOMBRE ACTUALIZADO")
                     case 2: 
-                        user["Apellido"]=input("Ingresa nuevo apellido: ")
-                        print("APELLIDO ACTUALIZADO")
+                        user["Apellido"]=input(f"Antiguo apellido: {user['Apellido']} ║║║║ Nuevo apellido: ")
+                        print(Fore.GREEN+Style.BRIGHT+"APELLIDO ACTUALIZADO")
                     case 3: 
-                        user["DNI"]=input("Ingresa nuevo DNI: ")
-                        print("DNI ACTUALIZADO")
+                        user["DNI"]=input(f"Antiguo DNI: {user['DNI']} ║║║║ Nuevo DNI: ")
+                        print(Fore.GREEN+Style.BRIGHT+"DNI ACTUALIZADO")
                     case 4: 
-                        user["Direccion"]=input("Ingresa nueva direccion: ")
-                        print("DIRECCION ACTUALIZADA")
+                        user["Direccion"]=input(f"Antigua direccion: {user['Direccion']} ║║║║ Nueva direccion: ")
+                        print(Fore.GREEN+Style.BRIGHT+"DIRECCION ACTUALIZADA")
                     case 5: 
-                        user["Ciudad"]=input("Ingresa nueva ciudad: ")
-                        print("CIUDAD ACTUALIZADA")
-                    case 6: 
-                        user["Libros"]=int(input("Ingrese cantidad actualizada de libros: "))
-                        print("LIBROS ACTUALIZADOS")
+                        user["Ciudad"]=input(f"Antigua ciudad:{user['Ciudad']} ║║║║ Nueva ciudad: ")
+                        print(Fore.GREEN+Style.BRIGHT+"CIUDAD ACTUALIZADA")
                     case _:
-                        print("OPCION MAL SELECCIONADA")
+                        print(Fore.RED+"OPCION MAL SELECCIONADA")
                 encontrado=True
                 break
 
         if not encontrado:
-            print("Persona NO encontrada")
+            print(Back.RED+"Persona NO encontrada")
     
     with open("Personas/Users.json", "w", encoding="utf-8") as usuarios:
         json.dump(lista_usuario, usuarios, indent=4, ensure_ascii=False)
@@ -152,12 +158,17 @@ def modificar_usuario():
 
 
 def buscar_usuario():
+    limpiar_pantalla()
+    print(Back.WHITE+Style.BRIGHT+"█████████████████ BUSCAR USUARIO ██████████████████████")
     with open("Personas/Users.json", "r", encoding="utf-8") as usuarios:
         lista_usuario=json.load(usuarios)
         opcion=input("Ingresa dato para buscar: ")
+        encontrado=False
         for user in lista_usuario:
             if user["Nombre"].lower()==opcion.lower() or user["Apellido"].lower()==opcion.lower() or str(user["DNI"])==opcion or user["Direccion"].lower()==opcion.lower() or user["Ciudad"].lower()==opcion.lower():
                 tabla=tabulate(user.items(), headers = ["-----", "Usuario"], tablefmt = "rounded_grid")
                 print(tabla)
-
+                encontrado=True
+        if not encontrado:
+            print(Fore.RED + Style.BRIGHT + "NO EXISTE EL DATO INGRESADO")
 
