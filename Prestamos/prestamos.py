@@ -1,6 +1,7 @@
 
 import json
 from datetime import date
+from tabulate import tabulate
 
 prestamos = []
 
@@ -84,8 +85,15 @@ def eliminar_prestamo():
         print("")
         print("_-_-_ ELIMINAR PRÉSTAMO _-_-_")
 
+    tabla = []
+
     for i, prestamo in enumerate(prestamos):
-        print(f"{i+1}. DNI: {prestamo['dni']} | Usuario: {prestamo['nombre']} {prestamo['apellido']} | Libro: {prestamo['titulo']} | Fecha: {prestamo['fecha']}")
+        tabla.append([i+1, prestamo["apellido"], prestamo["nombre"], prestamo["dni"], prestamo["titulo"], prestamo["fecha"]])
+
+    encabezados = ["N°", "Apellido", "Nombre", "DNI", "Libro", "Fecha del préstamo"]
+
+    print("")
+    print(tabulate(tabla, headers = encabezados, tablefmt = "grid"))
 
     while True:
         num_prestamo = input("Ingrese el número del préstamo que desea eliminar (o 'x' para cancelar): ")
@@ -119,7 +127,7 @@ def contador_prestamos_por_persona(dni):
 
 def usuario_registrado(dni):
     try:
-        with open("Users.json", "r") as archivo:
+        with open("../Personas/Users.json", "r") as archivo:
             usuarios = json.load(archivo)
             for usuario in usuarios:
                 if usuario["dni"] == dni:
@@ -132,7 +140,7 @@ def usuario_registrado(dni):
 
 def stock_libro(titulo):
     try:
-        with open("libros.json", "r") as archivo:
+        with open("../libros/libros.json", "r") as archivo:
             libros = json.load(archivo)
             for libro in libros:
                 if libro["titulo"].lower() == titulo.lower():
@@ -152,7 +160,7 @@ def libro_prestado(titulo):
 
 def obtener_usuario_por_dni(dni):
     try:
-        with open("Users.json", "r") as archivo:
+        with open("../Personas/Users.json", "r") as archivo:
             usuarios = json.load(archivo)
             for usuario in usuarios:
                 if usuario["dni"] == dni:
@@ -282,13 +290,15 @@ def informe_prestamos():
         else:
             print("Ha ingresado una opción inválida. Por favor intente nuevamente.")
 
-    for i, prestamo in enumerate(prestamos_ordenados):
-        print(f"{i+1}. {prestamo["nombre"]} {prestamo["apellido"]} - DNI: {prestamo["dni"]}")
-        print(f" Libro: {prestamo["titulo"]}")
-        print(f" Fecha: {prestamo["fecha"]}")
-        print("-" * 50)
+    tabla = []
 
+    for i, prestamo in enumerate(prestamos_ordenados):
+        tabla.append([i+1, prestamo["apellido"], prestamo["nombre"], prestamo["dni"], prestamo["titulo"], prestamo["fecha"]])
+
+    encabezados = ["N°", "Apellido", "Nombre", "DNI", "Libro", "Fecha del préstamo"]
+    
     print("")
+    print(tabulate(tabla, headers = encabezados, tablefmt = "grid"))
     menu_prestamos()
 
 def menu_prestamos():
