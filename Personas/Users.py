@@ -1,7 +1,7 @@
 import json
 from tabulate import tabulate
 from colorama import *
-from mini_funciones import limpiar_pantalla, pedir_dato
+from Personas.mini_funciones import limpiar_pantalla, pedir_dato
 
 init(autoreset=True)
 
@@ -12,14 +12,14 @@ def agregar_usuario():
 
     nombre=pedir_dato(verde+"Ingresa nombre de la persona: ")
     apellido=pedir_dato(verde+"Ingresa apellido de la persona: ")
-    DNI=pedir_dato(verde+"Ingresa el DNI de la persona: ")
+    dni=pedir_dato(verde+"Ingresa el DNI de la persona: ")
     direccion=pedir_dato(verde+"Ingresa la direccion de la persona: ")
     ciudad=pedir_dato(verde+"Ingresa la ciudad de la persona: ")
 
     nuevo_usuario={
         "Nombre": nombre,
         "Apellido": apellido,
-        "DNI": DNI,
+        "DNI": dni,
         "Direccion": direccion,
         "Ciudad": ciudad,
     }
@@ -35,13 +35,13 @@ def agregar_usuario():
 def borrar_usuario():
     limpiar_pantalla()
     print(Back.WHITE+Style.BRIGHT+"█████████████████ BORRAR USUARIO ██████████████████████")
-    DNI=input(Fore.LIGHTRED_EX+"Ingresa el DNI del usuario que quieres borrar: ")
+    dni=input(Fore.LIGHTRED_EX+"Ingresa el DNI del usuario que quieres borrar: ")
     with open("Personas/Users.json", "r", encoding="utf-8") as usuarios: 
         lista_usuarios=json.load(usuarios)
         while True:
             encontrado=False
             for user in lista_usuarios:
-                if DNI in user.values():
+                if dni in user.values():
                     lista_usuarios.remove(user)
                     encontrado=True
                     break
@@ -125,7 +125,7 @@ def modificar_usuario():
         encontrado=False
 
         for user in lista_usuario:
-            if str(user["DNI"]) == buscar:
+            if str(user["dni"]) == buscar:
                 print(Back.GREEN+"persona encontrada")
                 opcion=int(input(Fore.YELLOW+" [1] NOMBRE \n [2] APELLIDO \n [3] DNI \n [4] DIRECCION \n [5] CIUDAD \n Seleccione una modificacion:  "))
                 match opcion:
@@ -136,13 +136,13 @@ def modificar_usuario():
                         user["Apellido"]=input(f"Antiguo apellido: {user['Apellido']} ║║║║ Nuevo apellido: ")
                         print(Fore.GREEN+Style.BRIGHT+"APELLIDO ACTUALIZADO")
                     case 3: 
-                        user["DNI"]=input(f"Antiguo DNI: {user['DNI']} ║║║║ Nuevo DNI: ")
+                        user["dni"]=input(f"Antiguo DNI: {user['dni']} ║║║║ Nuevo DNI: ")
                         print(Fore.GREEN+Style.BRIGHT+"DNI ACTUALIZADO")
                     case 4: 
                         user["Direccion"]=input(f"Antigua direccion: {user['Direccion']} ║║║║ Nueva direccion: ")
                         print(Fore.GREEN+Style.BRIGHT+"DIRECCION ACTUALIZADA")
                     case 5: 
-                        user["Ciudad"]=input(f"Antigua ciudad:{user['Ciudad']} ║║║║ Nueva ciudad: ")
+                        user["Ciudad"]=input(f"Antigua ciudad: {user['Ciudad']} ║║║║ Nueva ciudad: ")
                         print(Fore.GREEN+Style.BRIGHT+"CIUDAD ACTUALIZADA")
                     case _:
                         print(Fore.RED+"OPCION MAL SELECCIONADA")

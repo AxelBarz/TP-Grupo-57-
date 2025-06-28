@@ -1,4 +1,3 @@
-
 import json
 from datetime import date
 from tabulate import tabulate
@@ -8,7 +7,7 @@ prestamos = []
 def cargar_prestamos():
     global prestamos
     try:
-        with open("prestamos.json", "r") as archivo:
+        with open("Prestamos/prestamos.json", "w", encoding="utf-8") as archivo:
             prestamos = json.load(archivo)
     except FileNotFoundError:
         print("El archivo no existe, se creará al guardar")
@@ -16,7 +15,7 @@ def cargar_prestamos():
 
 
 def guardar_prestamo():
-    with open("prestamos.json", "w") as archivo:
+    with open("Prestamos/prestamos.json", "w", encoding="utf-8") as archivo:
         json.dump(prestamos,archivo)
 
 
@@ -29,38 +28,38 @@ def agregar_prestamo():
 
     if not usuario_registrado(dni):
         print("El DNI ingresado no pertenece a un usuario registrado.")
-        return menu_prestamos()
+        return
 
     usuario = obtener_usuario_por_dni(dni)
 
     if usuario is None:
         print(f"Error al obtener los datos del usuario.")
-        return menu_prestamos()
+        return
     
-    nombre = usuario["nombre"]
-    apellido = usuario["apellido"]
+    nombre = usuario["Nombre"]
+    apellido = usuario["Apellido"]
 
     cantidad = contador_prestamos_por_persona(dni)
     if cantidad >= 3:
         print("El usuario ya posee 3 libros en su haber.")
         print("Debe devolver al menos uno para poder solicitar un nuevo préstamo.")
-        return menu_prestamos()
+        return
 
     titulo = input("Ingrese el título del libro solicitado: ")
 
     if not stock_libro(titulo):
         print("El libro ingresado no está disponible en la biblioteca.")
-        return menu_prestamos()
+        return
     
     dni_prestamo = libro_prestado(titulo)
     if dni_prestamo is not None:
         usuario_prestamo = obtener_usuario_por_dni(dni_prestamo)
 
-        nombre_prestamo = usuario_prestamo["nombre"]
-        apellido_prestamo = usuario_prestamo["apellido"]
+        nombre_prestamo = usuario_prestamo["Nombre"]
+        apellido_prestamo = usuario_prestamo["Apellido"]
 
         print(f"Este libro ya se encuentra prestado al usuario {nombre_prestamo} {apellido_prestamo} con DNI: {dni_prestamo}")
-        return menu_prestamos()
+        return
 
     fecha = str(date.today())
 
@@ -71,7 +70,6 @@ def agregar_prestamo():
     
     print("Prestamo registrado correctamente.")
 
-    menu_prestamos()
 
 
 def eliminar_prestamo():
@@ -79,7 +77,6 @@ def eliminar_prestamo():
 
     if len(prestamos) == 0:
         print("No hay préstamos actualmente.")
-        return menu_prestamos()
     
     else:
         print("")
@@ -100,7 +97,7 @@ def eliminar_prestamo():
 
         if num_prestamo.lower() == "x":
             print("Eliminación cancelada.")
-            return menu_prestamos()
+            break
 
         try:
             num_prestamo = int(num_prestamo)
@@ -109,7 +106,7 @@ def eliminar_prestamo():
                 guardar_prestamo()
                 print(f"Préstamo eliminado correctamente.")
                 print(f"Correspondiente al libro: {eliminado['titulo']} | DNI: {eliminado['dni']}")
-                return menu_prestamos()
+                break
             else:
                 print("Número fuera de rango. Intente nuevamente.")
 
@@ -127,7 +124,7 @@ def contador_prestamos_por_persona(dni):
 
 def usuario_registrado(dni):
     try:
-        with open("../Personas/Users.json", "r") as archivo:
+        with open("Personas/Users.json", "r", encoding="utf-8") as archivo:
             usuarios = json.load(archivo)
             for usuario in usuarios:
                 if usuario["dni"] == dni:
@@ -135,12 +132,12 @@ def usuario_registrado(dni):
                 
     except FileNotFoundError:
         print("Archivo usuarios no encontrado.")
-    return False
+    return None
 
 
 def stock_libro(titulo):
     try:
-        with open("../libros/libros.json", "r") as archivo:
+        with open("libros/libros.json", "r", encoding="utf-8") as archivo:
             libros = json.load(archivo)
             for libro in libros:
                 if libro["titulo"].lower() == titulo.lower():
@@ -160,10 +157,10 @@ def libro_prestado(titulo):
 
 def obtener_usuario_por_dni(dni):
     try:
-        with open("../Personas/Users.json", "r") as archivo:
+        with open("Personas/Users.json", "r", encoding="utf-8") as archivo:
             usuarios = json.load(archivo)
             for usuario in usuarios:
-                if usuario["dni"] == dni:
+                if usuario["dni"] == str(dni):
                     return usuario
                 
     except FileNotFoundError:
@@ -176,7 +173,6 @@ def modificar_prestamo():
 
     if len(prestamos) == 0:
         print("No hay prestamos para modificar")
-        return menu_prestamos()
     
     print("_-_-_ MODIFICAR PRÉSTAMO _-_-_")
     for i, prestamo in enumerate(prestamos):
@@ -227,11 +223,11 @@ def modificar_prestamo():
             usuario_nuevo = obtener_usuario_por_dni(nuevo_dni)
             prestamo["dni"] = nuevo_dni
             prestamo["nombre"] = usuario_nuevo["nombre"]
-            prestamo["nombre"] = usuario_nuevo["apellido"]
+            prestamo["apellido"] = usuario_nuevo["apellido"]
 
             guardar_prestamo()
             print("Datos de usuario modificados correctamente.")
-            break
+            return
 
         elif eleccion == "2":
             while True:
@@ -252,7 +248,7 @@ def modificar_prestamo():
             prestamo["titulo"] = nuevo_titulo
             guardar_prestamo()
             print("Libro modificado correctamente.")
-            return menu_prestamos()
+            return
 
         else:
             print("La opción ingresada no es válida. Intente nuevamente.")
@@ -263,7 +259,7 @@ def informe_prestamos():
 
     if len(prestamos) == 0:
         print("No hay prestamos actualmente para mostrar.")
-        return menu_prestamos()
+        return
     
     else:
         print("Antes de generar el informe, por favor ingrese el orden deseado:")
@@ -299,37 +295,3 @@ def informe_prestamos():
     
     print("")
     print(tabulate(tabla, headers = encabezados, tablefmt = "grid"))
-    menu_prestamos()
-
-def menu_prestamos():
-    
-    while True:
-
-        cargar_prestamos()
-
-        print("")
-        print("//// GESTIÓN DE PRÉSTAMOS ////")
-        print("1. Agregar un nuevo préstamo")
-        print("2. Eliminar un préstamo existente")
-        print("3. Modificar un préstamo")
-        print("4. Crear informe de préstamos")
-        print("5. Salir")
-
-        opcion = int(input("Seleccione una opción: "))
-
-        match opcion:
-            case 1:
-                agregar_prestamo()
-            case 2:
-                eliminar_prestamo()
-            case 3:
-                modificar_prestamo()
-            case 4:
-                informe_prestamos()
-            case 5:
-                pass
-            case _:
-                print("Opción inválida. Por favor intente nuevamente.")
-
-
-menu_prestamos()

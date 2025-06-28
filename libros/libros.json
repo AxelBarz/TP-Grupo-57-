@@ -1,0 +1,26 @@
+[
+    {
+        "titulo": "CIEN AÑOS DE SOLEDAD",
+        "edicion": "1RA",
+        "editorial": "SUDAMERICANA",
+        "autor": "GABRIEL GARCÍA MÁRQUEZ"
+    },
+    {
+        "titulo": "EL PRINCIPITO",
+        "edicion": "2DA",
+        "editorial": "SALAMANDRA",
+        "autor": "ANTOINE DE SAINT-EXUPÉRY"
+    },
+    {
+        "titulo": "1984",
+        "edicion": "3RA",
+        "editorial": "DEBOLSILLO",
+        "autor": "GEORGE ORWELL"
+    },
+    {
+        "titulo": "CAPERUCITA ROJA",
+        "edicion": "1ERA",
+        "editorial": "AUSTRAL",
+        "autor": "HERMANOS GRIMN"
+    }
+]

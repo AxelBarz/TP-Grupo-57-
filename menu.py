@@ -1,3 +1,7 @@
+from Prestamos import prestamos
+from Personas import Users
+from libros import libros
+
 def menu_principal():
   print("\n📚 Sistema de Gestión de Biblioteca 📚")
   print("\nMenú principal:")
@@ -12,23 +16,23 @@ def menu_usuarios():
     print("\n--- Gestión de Usuarios ---")
     print("1. Crear usuario")
     print("2. Eliminar usuario")
-    print("3. Editar usuario")
+    print("3. Modificar usuario")
     print("4. Informe de usuarios")
     print("5. Volver al menú principal")
 
     opcion = input("Seleccioná una opción: ")
     match opcion:
       case "1":
-        print("Crear usuario (función a implementar)")
+        Users.agregar_usuario()
         break
       case "2":
-        print("Eliminar usuario (función a implementar)")
+        Users.borrar_usuario()
         break
       case "3":
-        print("Editar usuario (función a implementar)")
+        Users.modificar_usuario()
         break
       case "4":
-        print("Informe de usuarios (función a implementar)")
+        Users.listar_usuarios()
         break
       case "5":
         break
@@ -39,7 +43,7 @@ def menu_libros():
   while True:
     print("\n--- Gestión de Libros ---")
     print("1. Ingresar libro")
-    print("2. Editar libro")
+    print("2. Modificar libro")
     print("3. Eliminar libro")
     print("4. Informe de libros")
     print("5. Volver al menú principal")
@@ -47,16 +51,16 @@ def menu_libros():
     opcion = input("Seleccioná una opción: ")
     match opcion:
       case "1":
-        print("Ingresar libro (función a implementar)")
+        libros.agregar_libro()
         break
       case "2":
-        print("Eliminar libro (función a implementar)")
+        libros.modificar_libro()
         break
       case "3":
-        print("Editar libro (función a implementar)")
+        libros.eliminar_libro()
         break
       case "4":
-        print("Informe de libros (función a implementar)")
+        libros.mostrar_libros()
         break
       case "5":
         break
@@ -66,20 +70,23 @@ def menu_libros():
 def menu_prestamos():
   while True:
     print("\n--- Gestión de Préstamos ---")
-    print("1. Agregar préstamo")
-    print("2. Eliminar préstamo")
-    print("3. Informe de préstamos")
-    print("4. Volver al menú principal")
+    print("1. Agregar un nuevo préstamo")
+    print("2. Eliminar préstamo existente")
+    print("3. Modificar un prestamo")
+    print("4. Informe de préstamos")
+    print("5. Volver al menú principal")
 
     opcion = input("Seleccioná una opción: ")
     match opcion:
       case "1":
-        print("Agregar préstamo (función a implementar)")
+        prestamos.agregar_prestamo()
       case "2":
-        print("Eliminar préstamo (función a implementar)")
+        prestamos.eliminar_prestamo()
       case "3":
-        print("Informe de préstamos (función a implementar)")
+        prestamos.modificar_prestamo()
       case "4":
+        prestamos.informe_prestamos()
+      case "5":
         break
       case _:
         print("❌ Por favor, seleccione una opcion valida:")

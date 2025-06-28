@@ -1,7 +1,7 @@
 import json
 from tabulate import tabulate
 
-ARCHIVO_JSON = "libros.json"
+ARCHIVO_JSON = "libros/libros.json"
 
 def cargar_libros():
     try:
@@ -84,31 +84,3 @@ def eliminar_libro():
             print("Número inválido.")
     except ValueError:
         print("Entrada inválida.")
-
-def menu():
-    while True:
-        print("\n BIENVENIDO AL SECTOR DE LIBROS ")
-        print("1. Agregar libro")
-        print("2. Mostrar libros")
-        print("3. Modificar libro")
-        print("4. Eliminar libro")
-        print("5. Salir")
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == '1':
-            agregar_libro()
-        elif opcion == '2':
-            mostrar_libros()
-        elif opcion == '3':
-            modificar_libro()
-        elif opcion == '4':
-            eliminar_libro()
-        elif opcion == '5':
-            print("Saliendo del programa...")
-            break
-        else:
-            print("Opción inválida. Intente nuevamente.")
-
-if __name__ == "__main__":
-    menu()

@@ -2,36 +2,36 @@
     {
         "Nombre": "Juan",
         "Apellido": "Perez",
-        "DNI": "30123456",
+        "dni": "30123456",
         "Direccion": "Calle Falsa 123",
         "Ciudad": "Parana"
     },
     {
         "Nombre": "Sofia",
         "Apellido": "Fernandez",
-        "DNI": "40222333",
+        "dni": "40222333",
         "Direccion": "Av. San Martin 456",
         "Ciudad": "Villaguay"
     },
     {
         "Nombre": "Marcelo",
         "Apellido": "Ramirez",
-        "DNI": "27333444",
+        "dni": "27333444",
         "Direccion": "Pasaje Los Alamos 789",
         "Ciudad": "Concordia"
     },
     {
         "Nombre": "Camila",
         "Apellido": "Lopez",
-        "DNI": "35999888",
+        "dni": "35999888",
         "Direccion": "Ruta 8 Km 15",
         "Ciudad": "Victoria"
     },
     {
-        "Nombre": "Andres",
-        "Apellido": "Lopez",
-        "DNI": "32111222",
-        "Direccion": "Av. Rivadavia 1000",
-        "Ciudad": "La Paz"
+        "Nombre": "Sabrina",
+        "Apellido": "Bidal",
+        "dni": "44922237",
+        "Direccion": "Lisandro Castro 154",
+        "Ciudad": "San Salvador"
     }
 ]
