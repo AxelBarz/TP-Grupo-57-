@@ -165,7 +165,7 @@ def buscar_usuario():
         opcion=input("Ingresa dato para buscar: ")
         encontrado=False
         for user in lista_usuario:
-            if user["Nombre"].lower()==opcion.lower() or user["Apellido"].lower()==opcion.lower() or str(user["DNI"])==opcion or user["Direccion"].lower()==opcion.lower() or user["Ciudad"].lower()==opcion.lower():
+            if user["Nombre"].lower()==opcion.lower() or user["Apellido"].lower()==opcion.lower() or str(user["dni"])==opcion or user["Direccion"].lower()==opcion.lower() or user["Ciudad"].lower()==opcion.lower():
                 tabla=tabulate(user.items(), headers = ["-----", "Usuario"], tablefmt = "rounded_grid")
                 print(tabla)
                 encontrado=True
