@@ -33,5 +33,19 @@
         "dni": "44922237",
         "Direccion": "Lisandro Castro 154",
         "Ciudad": "San Salvador"
+    },
+    {
+        "Nombre": "Santiago Ramirez",
+        "Apellido": "Ramirez",
+        "dni": "37290428",
+        "Direccion": "Lago San Martin 738",
+        "Ciudad": "Parana"
+    },
+    {
+        "Nombre": "Agustin",
+        "Apellido": "Palleiro",
+        "dni": "38569883",
+        "Direccion": "Rio Negro 661",
+        "Ciudad": "Parana"
     }
 ]

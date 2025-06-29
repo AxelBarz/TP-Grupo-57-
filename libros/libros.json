@@ -22,5 +22,17 @@
         "edicion": "1ERA",
         "editorial": "AUSTRAL",
         "autor": "HERMANOS GRIMN"
+    },
+    {
+        "titulo": "MI PLANTA DE NARANJA LIMA",
+        "edicion": "2DA",
+        "editorial": "KAPELUZ",
+        "autor": "JOSE MAURO DE VASCONCELOS"
+    },
+    {
+        "titulo": "CUENTOS DE LA SELVA",
+        "edicion": "5TA",
+        "editorial": "ZIG ZAG",
+        "autor": "HORACIO QUIROGA"
     }
 ]

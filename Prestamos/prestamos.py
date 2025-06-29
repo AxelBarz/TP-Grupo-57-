@@ -222,8 +222,8 @@ def modificar_prestamo():
             
             usuario_nuevo = obtener_usuario_por_dni(nuevo_dni)
             prestamo["dni"] = nuevo_dni
-            prestamo["nombre"] = usuario_nuevo["nombre"]
-            prestamo["apellido"] = usuario_nuevo["apellido"]
+            prestamo["nombre"] = usuario_nuevo["Nombre"]
+            prestamo["apellido"] = usuario_nuevo["Apellido"]
 
             guardar_prestamo()
             print("Datos de usuario modificados correctamente.")
@@ -240,7 +240,7 @@ def modificar_prestamo():
 
                     if dni_prestamo is not None and dni_prestamo != prestamo["dni"]:
                         usuario_actual = obtener_usuario_por_dni(dni_prestamo)
-                        print(f"El libro ingresado ya se encuentra prestado a {usuario_actual["nombre"]} {usuario_actual["apellido"]}")
+                        print(f"El libro ingresado ya se encuentra prestado a {usuario_actual["Nombre"]} {usuario_actual["Apellido"]}")
                         print(f"DNI: {usuario_actual["dni"]}. Intente con otro libro.")
                     else:
                         break #si el libro está disponible
