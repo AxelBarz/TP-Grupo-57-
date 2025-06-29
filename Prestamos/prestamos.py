@@ -7,7 +7,7 @@ prestamos = []
 def cargar_prestamos():
     global prestamos
     try:
-        with open("Prestamos/prestamos.json", "w", encoding="utf-8") as archivo:
+        with open("Prestamos/prestamos.json", "r", encoding="utf-8") as archivo:
             prestamos = json.load(archivo)
     except FileNotFoundError:
         print("El archivo no existe, se creará al guardar")

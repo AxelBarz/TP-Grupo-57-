@@ -69,6 +69,7 @@ def menu_libros():
 
 def menu_prestamos():
   while True:
+    prestamos.cargar_prestamos()
     print("\n--- Gestión de Préstamos ---")
     print("1. Agregar un nuevo préstamo")
     print("2. Eliminar préstamo existente")
