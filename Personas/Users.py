@@ -19,7 +19,7 @@ def agregar_usuario():
     nuevo_usuario={
         "Nombre": nombre,
         "Apellido": apellido,
-        "DNI": dni,
+        "dni": dni,
         "Direccion": direccion,
         "Ciudad": ciudad,
     }
