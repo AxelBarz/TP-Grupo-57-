@@ -17,8 +17,9 @@ def menu_usuarios():
     print("1. Crear usuario")
     print("2. Eliminar usuario")
     print("3. Modificar usuario")
-    print("4. Informe de usuarios")
-    print("5. Volver al menú principal")
+    print("4. Buscar usuario")
+    print("5. Informe de usuarios")
+    print("6. Volver al menú principal")
 
     opcion = input("Seleccioná una opción: ")
     match opcion:
