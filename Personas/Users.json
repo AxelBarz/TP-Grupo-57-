@@ -33,12 +33,5 @@
         "dni": "44922237",
         "Direccion": "Lisandro Castro 154",
         "Ciudad": "San Salvador"
-    },
-    {
-        "Nombre": "Agustin",
-        "Apellido": "Raviol",
-        "dni": "12345678",
-        "Direccion": "Lisandro Castro 154",
-        "Ciudad": "San Salvador"
     }
 ]
