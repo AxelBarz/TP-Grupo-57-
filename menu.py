@@ -32,9 +32,12 @@ def menu_usuarios():
         Users.modificar_usuario()
         break
       case "4":
-        Users.listar_usuarios()
+        Users.buscar_usuario()
         break
       case "5":
+        Users.listar_usuarios()
+        break
+      case "6":
         break
       case _:
         print("❌ Por favor, seleccione una opcion valida:")
