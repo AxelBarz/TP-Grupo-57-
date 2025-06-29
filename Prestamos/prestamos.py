@@ -93,6 +93,7 @@ def eliminar_prestamo():
     print(tabulate(tabla, headers = encabezados, tablefmt = "grid"))
 
     while True:
+        print("")
         num_prestamo = input("Ingrese el número del préstamo que desea eliminar (o 'x' para cancelar): ")
 
         if num_prestamo.lower() == "x":
@@ -173,28 +174,42 @@ def modificar_prestamo():
 
     if len(prestamos) == 0:
         print("No hay prestamos para modificar")
+        return
     
+    print("")
     print("_-_-_ MODIFICAR PRÉSTAMO _-_-_")
+
     for i, prestamo in enumerate(prestamos):
+        print("")
         print(f"{i+1}. {prestamo["nombre"]} {prestamo["apellido"]} DNI: {prestamo["dni"]}")
         print(f"Libro: {prestamo["titulo"]} Retirado el: {prestamo["fecha"]}")
-        print("")
-
+        
+        
     while True:
+        print("")
+        opcion = input("Indique el número correspondiente al préstamo que desea modificar (o 'x' para cancelar): ")
+
+        if opcion.lower() == "x":
+            print("Modificación cancelada.")
+            return
+        
         try:
-            opcion = int(input("Indique el número correspondiente al préstamo que desea modificar: "))
+            opcion = int(opcion)
             if 1 <= opcion <= len(prestamos):
-                break #si el número ingresado es válido, sale del bucle
+                break #si es un numero inválido
+
             else:
-                print("El número ingresado no corresponde a ninguno de la lista. Intente nuevamente.")
+                print("El número ingresado no corresponde a ninguno de la lista. Intente de nuevo.")
                 print("")
+
         except ValueError:
-            print("Por favor ingrese un número.")
+            print("Por favor ingrese un número o 'x' para cancelar.")
             print("")
 
     indice = opcion - 1
     prestamo = prestamos[indice]
 
+    print("")
     print(f"Seleccionaste el préstamo de {prestamo["nombre"]} {prestamo["apellido"]}")
     print(f"Correspondiente al libro: {prestamo["titulo"]}")
     print("")
