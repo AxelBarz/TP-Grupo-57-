@@ -22,6 +22,7 @@ def guardar_prestamo():
 def agregar_prestamo():
     global prestamos
 
+    print("")
     print("→ AGREGAR UN NUEVO PRESTAMO ←")
     
     dni = input("Ingrese el DNI del usuario: ")
